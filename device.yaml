@@ -1,0 +1,9 @@
+- host: 10.0.0.1
+  username: P
+  password: O
+  device_type: arista_eos
+ 
+- host: 10.0.0.2
+  username: P
+  password: O
+  device_type: arista_eos
