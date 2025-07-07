@@ -1,0 +1,34 @@
+
+
+hostname: R1
+bgp_asn : 1001
+router_id: 5.5.5.5
+
+neighbours:
+    - ip: 10.2.0.1
+	  remote-as: 1002
+	  update_source: loopback0
+	  password: 1203ca
+	  
+	  
+networks:
+     -10.0.0.2 mask 255.255.255.0
+	 -10.0.0.25 mask 255.255.255.0
+	 
+	 
+	 
+	 
+hostname {{ hostname }}
+
+router bgp {{ bgp_asn }}
+router id {{ router_id }}
+{ % for m in networks % }
+network {{ network }}
+{ % endfor %}
+
+{% for n in neighbours %}
+
+neighbour {{n.ip}} remote-as {{n.remote-as}}
+{% if n.update_source is defined %}
+neighbour {{n.ip}} update_source {{n.update_source}}
+{% end if %}
