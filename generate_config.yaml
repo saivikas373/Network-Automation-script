@@ -1,0 +1,17 @@
+- name: Geneate the switch configs
+  hosts: all
+  gather_facts: no
+  
+
+  tasks:
+     - name: Load device variables
+       include_vars: "vars/R1.yaml"
+	 
+	
+	  
+	   
+     - name: Render configs using Jinja2
+	   template:
+	       src: templates/sample_template.j2
+		   dest: configs/R1_config.txt
+      	 

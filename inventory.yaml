@@ -1,0 +1,7 @@
+
+
+hosts:
+  R1:
+  ansible_host: 192.52.62.30
+  
+  
