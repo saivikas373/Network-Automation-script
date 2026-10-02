@@ -1,0 +1,21 @@
+# Same rendering done with Ansible instead of Python.
+# Run from the repo root:  ansible-playbook -i ansible/inventory.yml ansible/generate_configs.yml
+- name: Generate device configs from templates
+  hosts: all
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Load this device's variables
+      ansible.builtin.include_vars: "../vars/{{ inventory_hostname }}.yaml"
+
+    - name: Make sure the output folder exists
+      ansible.builtin.file:
+        path: "../configs"
+        state: directory
+      run_once: true
+
+    - name: Render config with Jinja2
+      ansible.builtin.template:
+        src: ../templates/bgp_vlan.j2
+        dest: "../configs/{{ inventory_hostname }}_config.txt"

@@ -1,0 +1,7 @@
+__pycache__/
+venv/
+.venv/
+*.csv
+inventory.yaml
+!examples/*.csv
+.env

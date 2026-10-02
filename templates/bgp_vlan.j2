@@ -1,0 +1,23 @@
+hostname {{ hostname }}
+!
+{% for vlan in vlans %}
+vlan {{ vlan.id }}
+ name {{ vlan.name }}
+{% endfor %}
+!
+router bgp {{ bgp_asn }}
+ bgp router-id {{ router_id }}
+ bgp log-neighbor-changes
+{% for n in neighbors %}
+ neighbor {{ n.ip }} remote-as {{ n.remote_as }}
+{% if n.description is defined %}
+ neighbor {{ n.ip }} description {{ n.description }}
+{% endif %}
+{% if n.update_source is defined %}
+ neighbor {{ n.ip }} update-source {{ n.update_source }}
+{% endif %}
+{% endfor %}
+{% for net in networks %}
+ network {{ net.prefix }} mask {{ net.mask }}
+{% endfor %}
+!

@@ -1,0 +1,12 @@
+# Copy to inventory.yaml and edit. Credentials are NOT stored here.
+# device_type is any Netmiko platform: cisco_ios, cisco_xe, cisco_xr, cisco_nxos,
+# juniper_junos, arista_eos, a10, f5_tmsh ...
+- host: 192.0.2.11
+  name: lab-core-01
+  device_type: cisco_ios
+- host: 192.0.2.12
+  name: lab-core-02
+  device_type: cisco_nxos
+- host: 192.0.2.21
+  name: lab-lb-01
+  device_type: a10

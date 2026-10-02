@@ -1,0 +1,18 @@
+hostname R1
+!
+vlan 10
+ name MGMT
+vlan 20
+ name CLIENT
+!
+router bgp 65001
+ bgp router-id 192.0.2.1
+ bgp log-neighbor-changes
+ neighbor 198.51.100.2 remote-as 65002
+ neighbor 198.51.100.2 description TO-R2
+ neighbor 198.51.100.2 update-source Loopback0
+ neighbor 198.51.100.6 remote-as 65003
+ neighbor 198.51.100.6 description TO-R3
+ network 192.0.2.0 mask 255.255.255.0
+ network 203.0.113.0 mask 255.255.255.0
+!

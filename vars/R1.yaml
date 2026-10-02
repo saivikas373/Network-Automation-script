@@ -1,0 +1,15 @@
+hostname: R1
+bgp_asn: 65001
+router_id: 192.0.2.1
+
+vlans:
+  - {id: 10, name: MGMT}
+  - {id: 20, name: CLIENT}
+
+neighbors:
+  - {ip: 198.51.100.2, remote_as: 65002, description: TO-R2, update_source: Loopback0}
+  - {ip: 198.51.100.6, remote_as: 65003, description: TO-R3}
+
+networks:
+  - {prefix: 192.0.2.0, mask: 255.255.255.0}
+  - {prefix: 203.0.113.0, mask: 255.255.255.0}
